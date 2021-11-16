@@ -20,7 +20,18 @@ input_size = n_features
 output_size = n_features
 print(n_samples,n_features)
 
-model =  nn.Linear(input_size,output_size)
+class LinearRegression(nn.Module):
+    def __init__(self,input_dim,output_dim):
+        super(LinearRegression,self).__init__()
+        #define layers
+        self.lin = nn.Linear(input_dim,output_dim)
+
+    def forward(self,X):
+        return self.lin(X)
+
+model = LinearRegression(input_size,output_size)
+
+#model = nn.Linear(input_size,output_size)
 
 #loss
 
@@ -45,7 +56,9 @@ for epoch in range(n_iters):
     optimizer.zero_grad()
 
     if epoch % 10 ==0:
-        [W,b] = model.parameters()
-        print(f'epoch {epoch+1}:w = {W[0][0].item():.3f}, loss = {l:.8f}')
+        [w,b] = model.parameters()
+        print(f'epoch {epoch+1}:w = {w[0][0].item():.3f}, loss = {l:.8f}')
 
-print(f'Prediction before training: f(5) = {model(X_test):.3f}')
+
+print(f'Prediction after training: f(5) = {model(X_test).item():.3f}')
+
