@@ -36,7 +36,7 @@ for epoch in range(num_epochs):
 
     optimizer.zero_grad()
     if ((epoch + 1) % 10 == 0):
-        print(f'epoch:{epoch + 1}, loss={l.item()}:.4f')
+        print(f'epoch:{epoch + 1}, loss={l.item():.4f}')
 # forward pass and loss
 
 # plot
